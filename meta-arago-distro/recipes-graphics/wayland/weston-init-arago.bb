@@ -7,6 +7,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 SRC_URI:append = " \
     file://weston.ini \
     file://weston-launch-calibrator.sh \
+    file://weston-save-calibration.sh \
+    file://weston-profile.sh \
     file://emptty.conf \
 "
 
@@ -45,6 +47,8 @@ do_install() {
 
 	install -dm 755 -o weston -g weston ${D}/home/weston
 	install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
+	install -Dm755 weston-save-calibration.sh ${D}/${bindir}/weston-save-calibration
+	install -Dm644 weston-profile.sh ${D}/home/weston/.profile
 }
 
 inherit useradd
@@ -61,7 +65,9 @@ FILES:${PN} += "\
     ${sysconfdir}/xdg/weston/weston.ini \
     ${sysconfdir}/emptty/conf \
     /home/weston \
+    /home/weston/.profile \
     ${bindir}/weston-launch-calibrator \
+    ${bindir}/weston-save-calibration \
     "
 
 CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"

@@ -1,0 +1,13 @@
+[Unit]
+Description=Seat management daemon
+Documentation=man:seatd(1)
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/seatd -g video
+StandardError=journal
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
